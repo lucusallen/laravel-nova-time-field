@@ -5,17 +5,12 @@ namespace Michielfb\Time;
 use DateTimeImmutable;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
+use Laravel\Nova\Fields\Text;
 
-class Time extends Field
+class Time extends Text
 {
     use SupportsDependentFields;
 
-    /**
-     * The field's component.
-     *
-     * @var string
-     */
-    public $component = 'time';
 
     /**
      * Format the value using PHP date format.
@@ -34,6 +29,15 @@ class Time extends Field
         };
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return array_merge([
+            'extraAttributes' => [
+                'type' => 'time',
+            ],
+        ], parent::jsonSerialize());
     }
 
     /**
