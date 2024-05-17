@@ -4,9 +4,12 @@ namespace Michielfb\Time;
 
 use DateTimeImmutable;
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\SupportsDependentFields;
 
 class Time extends Field
 {
+    use SupportsDependentFields;
+
     /**
      * The field's component.
      *
